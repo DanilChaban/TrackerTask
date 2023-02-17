@@ -1,0 +1,32 @@
+<h1>Registration</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <input type="text" matInput formControlName="name" placeholder="Login">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="password" matInput formControlName="password" placeholder="Password">
+
+    <mat-error *ngIf="form.get('password')?.errors?.['required']">
+      Password is required.
+    </mat-error>
+
+    <mat-error *ngIf="form.get('password')?.errors?.['minlength']">
+      Password must have at least {{minPw}} characters.
+    </mat-error>
+
+    <mat-error *ngIf="form.get('password')?.errors?.['maxlength']">
+      The password must contain no more {{maxPw}} characters.
+    </mat-error>
+
+  </mat-form-field>
+
+  <button class="create-btn" type="submit" [disabled]="form.invalid">Create account</button>
+
+  <mat-error *ngIf="error" class="error">
+    The name is already in use.
+  </mat-error>
+
+</form>

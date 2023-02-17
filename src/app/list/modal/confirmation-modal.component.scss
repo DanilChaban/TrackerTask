@@ -1,0 +1,88 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.54);
+}
+
+.modal-window {
+  position: relative;
+  z-index: 2;
+  background: #FAFAFA;
+  box-shadow: 0 24px 38px rgba(0, 0, 0, 0.14), 0 9px 46px rgba(0, 0, 0, 0.12), 0 11px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  width: 280px;
+  height: 173px;
+}
+
+.text-container {
+  position: relative;
+  left: 20px;
+
+  .title {
+    color: rgba(0, 0, 0, 0.87);
+    font-family: 'MuseoModerno', serif;
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+  .question {
+    color: #757575;
+    font-family: 'MuseoModerno', serif;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+.button-container {
+  position: relative;
+  left: 104px;
+}
+
+button {
+  width: 76px;
+  height: 31px;
+  color: #F6EAD4;
+  border-radius: 134px;
+  border: none;
+  font-family: 'MuseoModerno', serif;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+button:hover {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn-yes {
+  background: #686082;
+}
+
+.btn-no {
+  margin-right: 11px;
+  background: #312F36;
+}
+
+.btn-yes:hover {
+  background: #5d5675;
+}
+
+.btn-no:hover {
+  background: #27262c;
+}
+
+

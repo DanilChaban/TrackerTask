@@ -1,0 +1,59 @@
+h1 {
+  position: relative;
+  top: 123px;
+  font-family: 'MuseoModerno', serif;
+  font-size: 36px;
+  font-weight: 800;
+  text-align: center;
+  color: #F6EAD4;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 412px;
+}
+
+mat-form-field {
+  margin: auto;
+
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background: #312F36;
+    border-radius: 134px;
+    border: none;
+    font-family: 'MuseoModerno', serif;
+    font-weight: 500;
+    font-size: 19.1847px;
+    width: 335px;
+    height: 62px;
+  }
+
+  ::ng-deep .mdc-text-field .mdc-text-field__input {
+    color: #C1C0C2;
+  }
+}
+
+.create-btn {
+  width: 335px;
+  height: 62px;
+  background: #686082;
+  border-radius: 134px;
+  border: none;
+  margin: auto;
+  font-family: 'MuseoModerno', serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: #F6EAD4;
+}
+
+.create-btn:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  background: #5d5675;
+}
+
+.error {
+  margin: auto;
+}
+
+

@@ -1,0 +1,21 @@
+<h1>Login</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <input type="text" matInput formControlName="name" placeholder="Login">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="password" matInput formControlName="password" placeholder="Password">
+  </mat-form-field>
+
+  <button class="submit" type="submit">Login</button>
+
+  <mat-error *ngIf="error" class="error">
+    Username does not exist.
+  </mat-error>
+
+</form>
+
+<p routerLink="/sign-up">Registration</p>

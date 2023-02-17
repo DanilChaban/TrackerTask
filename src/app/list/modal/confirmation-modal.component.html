@@ -1,0 +1,17 @@
+<div class="modal">
+
+  <div class="modal-window">
+    <div class="text-container">
+      <p class="title">Delete task</p>
+      <p class="question">Are you sure you want to <br>delete this task?</p>
+    </div>
+
+    <div class="button-container">
+      <button (click)="closeModal()" class="btn-no" type="button">No</button>
+      <button (click)="removeTrack()" class="btn-yes" type="button">Yes</button>
+    </div>
+  </div>
+
+  <div class="overlay"></div>
+</div>
+

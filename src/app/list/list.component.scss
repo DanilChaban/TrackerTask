@@ -1,0 +1,89 @@
+h1 {
+  position: relative;
+  top: 53px;
+  text-align: center;
+  font-family: 'MuseoModerno', serif;
+  font-weight: 800;
+  font-size: 36px;
+  color: #F6EAD4;margin-bottom: 53px;
+}
+
+button {
+  position: relative;
+  left: 240px;
+  bottom: 50px;
+  width: 97px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 60px;
+  border: none;
+  font-family: 'MuseoModerno', serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #FFFFFF;
+}
+
+button:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+mat-form-field {
+  display: block;
+  margin: auto;
+  width: 335px;
+  height: 62px;
+
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background: #312F36;
+    border-radius: 134px;
+    font-family: 'MuseoModerno', serif;
+    font-weight: 500;
+    font-size: 19.1847px;
+  }
+}
+
+.card {
+  width: 349px;
+  min-height: 142px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin: 17px auto;
+  padding: 10px;
+  overflow-x:hidden;
+
+  .text {
+    position: relative;
+    bottom: 17px;
+    color: #FFFFFF;
+    font-family: 'MuseoModerno', serif;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 27px;
+  }
+
+  .date-container {
+    color: #999999;
+    font-family: 'MuseoModerno', serif;
+    font-weight: 500;
+    font-size: 17px;
+  }
+
+  .time {
+    position: relative;
+    left: 17px;
+    top: 65px;
+  }
+
+  .date {
+    position: relative;
+    left: 242px;
+    top : 23px;
+  }
+}
+
+.card:hover {
+  cursor: pointer;
+  background: #1c1a1b;
+}

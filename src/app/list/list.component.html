@@ -1,0 +1,27 @@
+<div class="title-container">
+  <h1>List</h1>
+  <ng-container *ngIf="userName !== 'Admin'">
+    <button type="button" routerLink="/list/add-new">New +</button>
+  </ng-container>
+
+</div>
+
+  <mat-form-field>
+    <input type="search" matInput [(ngModel)]="search" placeholder="Search">
+  </mat-form-field>
+
+<div *ngFor="let post of posts | filter:search"
+     [routerLink]="['/list/edit', post.id]"
+     [ngStyle]="{
+       background: post.done ? '#272F28' : '#201D1E'
+     }"
+     class="card">
+
+  <p class="text">{{post.message}}</p>
+    <div class="date-container">
+      <p class="time">{{post.hours}}</p>
+      <p class="date">{{post.date}}</p>
+    </div>
+
+</div>
+
