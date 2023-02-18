@@ -4,26 +4,31 @@
 
   <mat-form-field>
     <input type="text" matInput formControlName="name" placeholder="Login">
+
+    <mat-error *ngIf="form.get('name')?.hasError('required')">
+      Login is required.
+    </mat-error>
+
   </mat-form-field>
 
   <mat-form-field>
     <input type="password" matInput formControlName="password" placeholder="Password">
 
-    <mat-error *ngIf="form.get('password')?.errors?.['required']">
+    <mat-error *ngIf="form.get('password')?.hasError('required')">
       Password is required.
     </mat-error>
 
-    <mat-error *ngIf="form.get('password')?.errors?.['minlength']">
+    <mat-error *ngIf="form.get('password')?.hasError('minlength')">
       Password must have at least {{minPw}} characters.
     </mat-error>
 
-    <mat-error *ngIf="form.get('password')?.errors?.['maxlength']">
+    <mat-error *ngIf="form.get('password')?.hasError('maxlength')">
       The password must contain no more {{maxPw}} characters.
     </mat-error>
 
   </mat-form-field>
 
-  <button class="create-btn" type="submit" [disabled]="form.invalid">Create account</button>
+  <button class="create-btn" type="submit">Create account</button>
 
   <mat-error *ngIf="error" class="error">
     The name is already in use.

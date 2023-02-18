@@ -4,10 +4,20 @@
 
   <mat-form-field>
     <input type="text" matInput formControlName="name" placeholder="Login">
+
+    <mat-error *ngIf="form.get('name')?.hasError('required')">
+      Login is required.
+    </mat-error>
+
   </mat-form-field>
 
   <mat-form-field>
     <input type="password" matInput formControlName="password" placeholder="Password">
+
+    <mat-error *ngIf="form.get('password')?.hasError('required')">
+      Password is required.
+    </mat-error>
+
   </mat-form-field>
 
   <button class="submit" type="submit">Login</button>

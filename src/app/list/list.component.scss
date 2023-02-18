@@ -5,7 +5,8 @@ h1 {
   font-family: 'MuseoModerno', serif;
   font-weight: 800;
   font-size: 36px;
-  color: #F6EAD4;margin-bottom: 53px;
+  color: #F6EAD4;
+  margin-bottom: 53px;
 }
 
 button {
@@ -20,7 +21,7 @@ button {
   font-family: 'MuseoModerno', serif;
   font-weight: 500;
   font-size: 15px;
-  color: #FFFFFF;
+  color: white;
 }
 
 button:hover {
@@ -56,7 +57,7 @@ mat-form-field {
   .text {
     position: relative;
     bottom: 17px;
-    color: #FFFFFF;
+    color: white;
     font-family: 'MuseoModerno', serif;
     font-weight: 500;
     font-size: 17px;

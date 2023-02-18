@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {catchError, tap, throwError} from "rxjs";
+import {catchError, Subject, takeUntil, tap, throwError} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,12 +9,13 @@ import {Router} from "@angular/router";
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
+  notifier: Subject<boolean> = new Subject<boolean>();
   minPw = 6;
   maxPw = 11;
   error = '';
   form = this.formBuilder.group({
-    name: [''],
+    name: ['', Validators.required],
     password: ['', [
       Validators.required,
       Validators.minLength(this.minPw),
@@ -28,12 +29,18 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this.notifier.next(true);
+    this.notifier.unsubscribe();
+  }
+
   onSubmit(): void {
     this.authService.register(this.form.getRawValue()).pipe(
       tap(() => {
 
         this.router.navigate(['']);
       }),
+      takeUntil(this.notifier),
       catchError(error => {
         this.error = error;
         return throwError(error);

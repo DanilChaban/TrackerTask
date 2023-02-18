@@ -4,6 +4,7 @@ import {ListComponent} from "./list.component";
 import {AddNewComponent} from "./add-new/add-new.component";
 import {EditComponent} from "./edit/edit.component";
 import {EditResolver} from "../resolvers/edit.resolver";
+import {AuthGuard} from "../guards/auth.guard";
 
 const routes: Routes = [
   {path: 'list', component: ListComponent},

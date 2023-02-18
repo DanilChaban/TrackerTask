@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {catchError, tap, throwError} from "rxjs";
+import {catchError, Subject, takeUntil, tap, throwError} from "rxjs";
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit{
+export class SignInComponent implements OnInit, OnDestroy {
+  notifier: Subject<boolean> = new Subject<boolean>();
   error = '';
   form = this.formBuilder.group({
-    name: [''],
-    password: ['']
+    name: ['', Validators.required],
+    password: ['', Validators.required]
   })
   constructor(private readonly formBuilder: FormBuilder,
               private readonly authService: AuthService,
@@ -27,12 +28,18 @@ export class SignInComponent implements OnInit{
     }
   }
 
+  ngOnDestroy(): void {
+    this.notifier.next(true);
+    this.notifier.unsubscribe();
+  }
+
   onSubmit(): void {
     this.authService.login(this.form.getRawValue()).pipe(
       tap(() => {
         localStorage.setItem('user-key', this.form.get('name')?.value!)
         this.router.navigate(['/list'])
       }),
+      takeUntil(this.notifier),
       catchError(error => {
         this.error = error;
         return throwError(error)

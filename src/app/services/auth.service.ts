@@ -41,4 +41,8 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!localStorage.getItem('auth-token');
   }
+
+  isAuthenticatedForGuard(): boolean {
+    return !!this.token;
+  }
 }

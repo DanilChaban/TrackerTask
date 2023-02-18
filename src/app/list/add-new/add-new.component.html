@@ -12,7 +12,7 @@
       </mat-datepicker-actions>
       </mat-datepicker>
 
-    <mat-error *ngIf="form.get('date')?.errors?.['required']">
+    <mat-error *ngIf="form.get('date')?.hasError('required')">
       This field is required.
     </mat-error>
   </mat-form-field>
@@ -20,11 +20,11 @@
   <mat-form-field>
     <input type="number" matInput min="1" max="24" formControlName="hours" placeholder="Time">
 
-  <mat-error *ngIf="form.get('hours')?.errors?.['required']">
+  <mat-error *ngIf="form.get('hours')?.hasError('required')">
     This field is required.
   </mat-error>
 
-  <mat-error *ngIf="form.get('hours')?.errors?.['pattern']">
+  <mat-error *ngIf="form.get('hours')?.hasError('pattern')">
     This field must contain numbers from 1 to 24
   </mat-error>
   </mat-form-field>
@@ -32,7 +32,7 @@
   <mat-form-field>
     <textarea matInput rows="9" formControlName="message" placeholder="Note"></textarea>
 
-    <mat-error *ngIf="form.get('message')?.errors?.['required']">
+    <mat-error *ngIf="form.get('message')?.hasError('required')">
       This field is required.
     </mat-error>
   </mat-form-field>
