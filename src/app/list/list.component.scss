@@ -36,12 +36,20 @@ mat-form-field {
   width: 335px;
   height: 62px;
 
+  ::ng-deep input::placeholder{
+    color: #625F65 !important;
+  }
+
   ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background: #312F36;
     border-radius: 134px;
     font-family: 'MuseoModerno', serif;
     font-weight: 500;
     font-size: 19.1847px;
+  }
+
+  ::ng-deep .mdc-text-field .mdc-text-field__input {
+    color: #C1C0C2;
   }
 }
 

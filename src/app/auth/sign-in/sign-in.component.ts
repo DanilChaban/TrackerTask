@@ -10,7 +10,7 @@ import {catchError, Subject, takeUntil, tap, throwError} from "rxjs";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit, OnDestroy {
-  notifier: Subject<boolean> = new Subject<boolean>();
+  notifier: Subject<void> = new Subject<void>();
   error = '';
   form = this.formBuilder.group({
     name: ['', Validators.required],
@@ -22,14 +22,10 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const potentialToken = localStorage.getItem('auth-token');
-    if (potentialToken !== null) {
-      this.authService.setToken(potentialToken)
-    }
   }
 
   ngOnDestroy(): void {
-    this.notifier.next(true);
+    this.notifier.next();
     this.notifier.unsubscribe();
   }
 

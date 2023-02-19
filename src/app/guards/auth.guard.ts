@@ -10,9 +10,8 @@ export class AuthGuard implements CanActivate {
   constructor(private readonly authService: AuthService,
               private readonly router: Router) {
   }
-
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    if (this.authService.isAuthenticatedForGuard()) {
+    if (this.authService.isAuthenticated()) {
       return of(true);
     } else {
       this.router.navigate(['']);
@@ -20,4 +19,5 @@ export class AuthGuard implements CanActivate {
 
     return of(false);
   }
+
 }

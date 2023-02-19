@@ -8,9 +8,6 @@ import {User} from "../interfaces/user";
   providedIn: 'root'
 })
 export class AuthService {
-
-  private token = '';
-
   constructor(private httpClient: HttpClient) {
   }
 
@@ -25,15 +22,9 @@ export class AuthService {
       .pipe(
         tap(({token}) => {
           localStorage.setItem('auth-token', token);
-          this.setToken(token);
         })
       )
   }
-
-  setToken(token: string) {
-    this.token = token;
-  }
-
   getToken(): string {
     return localStorage.getItem('auth-token')!;
   }
@@ -42,7 +33,4 @@ export class AuthService {
     return !!localStorage.getItem('auth-token');
   }
 
-  isAuthenticatedForGuard(): boolean {
-    return !!this.token;
-  }
 }

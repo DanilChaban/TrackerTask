@@ -18,6 +18,10 @@ mat-form-field {
   width: 335px;
   height: 62px;
 
+  ::ng-deep input::placeholder, textarea::placeholder{
+    color: #625F65 !important;
+  }
+
   ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background: #312F36;
     border-radius: 36px;

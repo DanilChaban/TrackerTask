@@ -17,6 +17,10 @@ form {
 mat-form-field {
   margin: auto;
 
+  ::ng-deep input::placeholder{
+    color: #625F65 !important;
+  }
+
   ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background: #312F36;
     border-radius: 134px;
@@ -31,6 +35,7 @@ mat-form-field {
   ::ng-deep .mdc-text-field .mdc-text-field__input {
     color: #C1C0C2;
   }
+
 }
 
 .submit {

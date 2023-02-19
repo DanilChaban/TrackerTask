@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit, OnDestroy {
-  notifier: Subject<boolean> = new Subject<boolean>();
+  notifier: Subject<void> = new Subject<void>();
   minPw = 6;
   maxPw = 11;
   error = '';
@@ -30,7 +30,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.notifier.next(true);
+    this.notifier.next();
     this.notifier.unsubscribe();
   }
 
@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.authService.register(this.form.getRawValue()).pipe(
       tap(() => {
 
-        this.router.navigate(['']);
+        this.router.navigate(['/auth/sign-in']);
       }),
       takeUntil(this.notifier),
       catchError(error => {

@@ -15,7 +15,7 @@ export class EditComponent implements OnInit {
     date: ['', Validators.required],
     hours: ['', [
       Validators.required,
-      Validators.pattern("[1-24]+")
+      Validators.pattern("^(2[0-4]|1[0-9]|[1-9])$")
     ]],
     message: ['', Validators.required],
     done: false
@@ -44,13 +44,17 @@ export class EditComponent implements OnInit {
   }
 
   updateTrack(): void {
-    this.listService.updateTrackById(this.trackId, this.form.getRawValue()).subscribe();
+    this.listService.updateTrackById(this.trackId, this.form.getRawValue()).pipe(
+      tap(() => {
+        this.router.navigate(['/list']);
+      })
+    ).subscribe();
   }
 
   removeTrack(): void {
     this.listService.removeTrack(this.trackId).pipe(
-      tap(track => {
-        this.router.navigate(['/list'])
+      tap(() => {
+        this.router.navigate(['/list']);
       })
     ).subscribe();
   }
