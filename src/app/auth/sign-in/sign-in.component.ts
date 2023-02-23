@@ -32,8 +32,8 @@ export class SignInComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.authService.login(this.form.getRawValue()).pipe(
       tap(() => {
+        this.router.navigate(['/list']);
         localStorage.setItem('user-key', this.form.get('name')?.value!)
-        this.router.navigate(['/list'])
       }),
       takeUntil(this.notifier),
       catchError(error => {

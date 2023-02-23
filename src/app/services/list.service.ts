@@ -17,13 +17,23 @@ export class ListService {
     return this.httpClient.post<void>(url, newData);
   }
 
+  getUsers(): Observable<any> {
+    const url = environment.apiUrl + '/users';
+    return this.httpClient.get<any>(url);
+  }
+
+  getAllTasksForAdmin(id: number): Observable<Track[]> {
+    const url = environment.apiUrl + `/track/${id}`;
+    return this.httpClient.get<Track[]>(url);
+  }
+
   getCurrentUserTasks(): Observable<Track[]> {
     const url = environment.apiUrl + '/track';
     return this.httpClient.get<Track[]>(url);
   }
 
   getUserTaskById(id: number): Observable<Track | null> {
-    return this.getCurrentUserTasks().pipe(
+    return this.getAllTasksForAdmin(id).pipe(
       switchMap(res => {
         let currentTask: Track | null = null
         res.forEach(obj => {
@@ -32,6 +42,7 @@ export class ListService {
           }
         })
         return of(currentTask)
+
       })
     )
   }

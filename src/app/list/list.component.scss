@@ -1,18 +1,16 @@
 h1 {
-  position: relative;
-  top: 53px;
+  margin: 53px 0 34px 0;
   text-align: center;
   font-family: 'MuseoModerno', serif;
   font-weight: 800;
   font-size: 36px;
   color: #F6EAD4;
-  margin-bottom: 53px;
 }
 
 button {
-  position: relative;
+  position: absolute;
+  top: 58px;
   left: 240px;
-  bottom: 50px;
   width: 97px;
   height: 44px;
   background: rgba(255, 255, 255, 0.09);
@@ -53,6 +51,16 @@ mat-form-field {
   }
 }
 
+.user-name {
+  position: relative;
+  top: 13px;
+  left: 13px;
+  font-family: 'MuseoModerno', serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: white;
+}
+
 .card {
   width: 349px;
   min-height: 142px;
@@ -60,7 +68,7 @@ mat-form-field {
   border-radius: 8px;
   margin: 17px auto;
   padding: 10px;
-  overflow-x:hidden;
+  overflow: hidden;
 
   .text {
     position: relative;

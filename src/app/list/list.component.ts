@@ -12,19 +12,40 @@ export class ListComponent implements OnInit {
   userName: string;
   search = '';
   posts: Track[] = [];
-  constructor(private readonly listService: ListService) {
-  }
+  users: any =  [];
+  constructor(private readonly listService: ListService) { }
 
   ngOnInit(): void {
-    this.getCurrentUserTasks();
     this.getRole();
+    this.getCurrentUserTasks();
+    this.getUsers();
   }
-  getCurrentUserTasks(): void {
-    this.listService.getCurrentUserTasks().pipe(
-      tap(post => {
-        this.posts = post;
+
+ getUsers(): void {
+    this.listService.getUsers().pipe(
+      tap(users => {
+        this.users = users;
+        this.getAllTasksForAdmin();
       })
     ).subscribe();
+ }
+
+  getAllTasksForAdmin(): void {
+    for (let user of this.users) {
+      this.listService.getAllTasksForAdmin(user.id).pipe(
+        tap(post => {
+          this.posts = post;
+        })
+      ).subscribe();
+    }
+  }
+
+  getCurrentUserTasks(): void {
+      this.listService.getCurrentUserTasks().pipe(
+        tap(post => {
+          this.posts = post;
+        })
+      ).subscribe();
   }
 
   getRole(): void {

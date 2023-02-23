@@ -8,6 +8,7 @@ import {User} from "../interfaces/user";
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -32,5 +33,4 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!localStorage.getItem('auth-token');
   }
-
 }

@@ -10,18 +10,26 @@
     <input type="search" matInput [(ngModel)]="search" placeholder="Search">
   </mat-form-field>
 
-<div *ngFor="let post of posts | filter:search"
-     [routerLink]="['/list/edit', post.id]"
-     [ngStyle]="{
+
+<div *ngFor="let post of posts | filter:search; let i = index">
+
+  <ng-container *ngIf="userName === 'Admin'">
+    <p class="user-name">{{users[i].name}}</p>
+  </ng-container>
+
+  <div [routerLink]="['/list/edit', post.id]"
+       [ngStyle]="{
        background: post.done ? '#272F28' : '#201D1E'
-     }"
-     class="card">
+       }"
+       class="card">
 
   <p class="text">{{post.message}}</p>
-    <div class="date-container">
-      <p class="time">{{post.hours}}</p>
-      <p class="date">{{post.date}}</p>
-    </div>
-
+  <div class="date-container">
+    <p class="time">{{post.hours}}</p>
+    <p class="date">{{post.date}}</p>
+  </div>
+  </div>
 </div>
+
+
 

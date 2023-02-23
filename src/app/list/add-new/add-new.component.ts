@@ -28,7 +28,6 @@ export class AddNewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   addNew(): void {
     const data: Track = {
       date: this.form.get('date')?.getRawValue(),
@@ -38,7 +37,7 @@ export class AddNewComponent implements OnInit {
     }
     this.listService.addNew(data).pipe(
       tap(() => {
-        this.router.navigate(['/list'])
+        this.router.navigate(['/list']);
       })
     ).subscribe();
   }

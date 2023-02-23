@@ -37,7 +37,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.authService.register(this.form.getRawValue()).pipe(
       tap(() => {
-
         this.router.navigate(['/auth/sign-in']);
       }),
       takeUntil(this.notifier),
