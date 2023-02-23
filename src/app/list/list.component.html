@@ -10,12 +10,9 @@
     <input type="search" matInput [(ngModel)]="search" placeholder="Search">
   </mat-form-field>
 
-
 <div *ngFor="let post of posts | filter:search; let i = index">
 
-  <ng-container *ngIf="userName === 'Admin'">
-    <p class="user-name">{{users[i].name}}</p>
-  </ng-container>
+    <p class="user-name" *ngIf="userName === 'Admin'">{{users[i].name}}</p>
 
   <div [routerLink]="['/list/edit', post.id]"
        [ngStyle]="{

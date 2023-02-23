@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ListService} from "../services/list.service";
 import {tap} from "rxjs";
 import {Track} from "../interfaces/track";
+import {User} from "../interfaces/user";
+import {Users} from "../interfaces/users";
 
 @Component({
   selector: 'app-list',
@@ -12,7 +14,7 @@ export class ListComponent implements OnInit {
   userName: string;
   search = '';
   posts: Track[] = [];
-  users: any =  [];
+  users: User[];
   constructor(private readonly listService: ListService) { }
 
   ngOnInit(): void {

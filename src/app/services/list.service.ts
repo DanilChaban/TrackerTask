@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, of, switchMap} from "rxjs";
 import {environment} from "../../environments/environment";
 import {Track} from "../interfaces/track";
+import {User} from "../interfaces/user";
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,12 @@ export class ListService {
     return this.httpClient.post<void>(url, newData);
   }
 
-  getUsers(): Observable<any> {
+  getUsers(): Observable<User[]> {
     const url = environment.apiUrl + '/users';
-    return this.httpClient.get<any>(url);
+    return this.httpClient.get<User[]>(url);
   }
 
-  getAllTasksForAdmin(id: number): Observable<Track[]> {
+  getAllTasksForAdmin(id: number | undefined): Observable<Track[]> {
     const url = environment.apiUrl + `/track/${id}`;
     return this.httpClient.get<Track[]>(url);
   }
