@@ -22,7 +22,7 @@ import {MatIconModule} from "@angular/material/icon";
     AddNewComponent,
     FilterPipe,
     EditComponent,
-    ConfirmationModalComponent,
+    ConfirmationModalComponent
   ],
     imports: [
         CommonModule,

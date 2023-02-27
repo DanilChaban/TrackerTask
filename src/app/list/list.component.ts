@@ -3,7 +3,6 @@ import {ListService} from "../services/list.service";
 import {tap} from "rxjs";
 import {Track} from "../interfaces/track";
 import {User} from "../interfaces/user";
-import {Users} from "../interfaces/users";
 
 @Component({
   selector: 'app-list',
@@ -19,24 +18,34 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRole();
-    this.getCurrentUserTasks();
-    this.getUsers();
+    if (this.userName === 'Admin') {
+      return this.getUsers()
+    } else {
+      return this.getCurrentUserTasks();
+    }
   }
 
- getUsers(): void {
+  getUsers(): void {
     this.listService.getUsers().pipe(
       tap(users => {
         this.users = users;
         this.getAllTasksForAdmin();
       })
     ).subscribe();
- }
+  }
 
   getAllTasksForAdmin(): void {
     for (let user of this.users) {
       this.listService.getAllTasksForAdmin(user.id).pipe(
-        tap(post => {
-          this.posts = post;
+        tap (post => {
+          console.log(post, 'adminPost')
+          this.posts = this.posts.concat(post.map((obj, index) => {
+            if (index === 0) {
+              return {...obj, userName: user.name};
+            }
+
+            return obj;
+          }))
         })
       ).subscribe();
     }
@@ -46,6 +55,7 @@ export class ListComponent implements OnInit {
       this.listService.getCurrentUserTasks().pipe(
         tap(post => {
           this.posts = post;
+          console.log(post, 'userPost');
         })
       ).subscribe();
   }

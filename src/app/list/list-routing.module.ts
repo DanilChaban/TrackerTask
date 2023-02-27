@@ -8,7 +8,7 @@ import {EditResolver} from "../resolvers/edit.resolver";
 const routes: Routes = [
   {path: '', component: ListComponent},
   {path: 'add-new', component: AddNewComponent},
-  {path: 'edit/:id', component: EditComponent, resolve: {track: EditResolver}},
+  {path: 'edit/:id', component: EditComponent, resolve: {track: EditResolver}}
 ];
 
 @NgModule({

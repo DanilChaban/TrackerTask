@@ -29,12 +29,12 @@ export class EditComponent implements OnInit {
               private readonly router: Router) { }
 
   ngOnInit(): void {
+
     this.activatedRoute.data.pipe(tap(({track}) => {
       this.form.get('date')?.setValue(track.date)
       this.form.get('hours')?.setValue(track.hours)
       this.form.get('message')?.setValue(track.message)
       this.form.get('done')?.setValue(track.done)
-
       this.trackId = track.id;
     })).subscribe();
   }
