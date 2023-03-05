@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ListService} from "../services/list.service";
 import {tap} from "rxjs";
-import {Track} from "../interfaces/track";
 import {User} from "../interfaces/user";
 
 @Component({
@@ -10,9 +9,9 @@ import {User} from "../interfaces/user";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  userName: string;
+  userName: string | null;
   search = '';
-  posts: Track[] = [];
+  posts: any = [];
   users: User[];
   constructor(private readonly listService: ListService) { }
 
@@ -29,6 +28,7 @@ export class ListComponent implements OnInit {
     this.listService.getUsers().pipe(
       tap(users => {
         this.users = users;
+        console.log(users, 'USERS')
         this.getAllTasksForAdmin();
       })
     ).subscribe();
@@ -38,29 +38,31 @@ export class ListComponent implements OnInit {
     for (let user of this.users) {
       this.listService.getAllTasksForAdmin(user.id).pipe(
         tap (post => {
-          console.log(post, 'adminPost')
-          this.posts = this.posts.concat(post.map((obj, index) => {
-            if (index === 0) {
-              return {...obj, userName: user.name};
-            }
-
-            return obj;
-          }))
+          this.posts.push(post.map((obj,) => {
+            return { ...obj, userId: user.id};
+            }));
         })
       ).subscribe();
     }
   }
 
+  getUserName(userId: number | undefined): string {
+    return this.users.find(user => user.id === userId)?.name || 'Unknown';
+  }
+
   getCurrentUserTasks(): void {
       this.listService.getCurrentUserTasks().pipe(
         tap(post => {
-          this.posts = post;
-          console.log(post, 'userPost');
+          this.posts.push(post);
         })
       ).subscribe();
   }
 
   getRole(): void {
     this.userName = localStorage.getItem('user-key')!;
+  }
+
+  getFormattedHours(hours: number): string {
+    return hours.toString().padStart(2) + 'h 00m';
   }
 }

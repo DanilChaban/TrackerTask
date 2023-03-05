@@ -38,7 +38,7 @@ mat-form-field {
 
 }
 
-.create-btn {
+.submit {
   width: 335px;
   height: 62px;
   background: #686082;
@@ -51,14 +51,21 @@ mat-form-field {
   color: #F6EAD4;
 }
 
-.create-btn:hover {
+.submit:hover {
   cursor: pointer;
   transition: 0.5s;
   background: #5d5675;
 }
 
+p {
+  text-align: center;
+  font-family: 'MuseoModerno', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #C1C0C2;
+  cursor: pointer;
+}
+
 .error {
   margin: auto;
 }
-
-

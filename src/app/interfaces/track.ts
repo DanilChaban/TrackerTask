@@ -1,8 +1,8 @@
 export interface Track {
   date: string;
-  hours: string;
+  hours: number;
   message: string;
   done: boolean;
   id?: number;
-  userName?: string | null;
+  userId?: number;
 }

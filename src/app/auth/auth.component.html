@@ -1,4 +1,4 @@
-<h1>Login</h1>
+<h1>{{isRegistering ? 'Registration' : 'Login'}}</h1>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
@@ -20,12 +20,14 @@
 
   </mat-form-field>
 
-  <button class="submit" type="submit">Login</button>
+  <button class="submit" type="submit">{{isRegistering ? 'Create account' : 'Login'}}</button>
 
   <mat-error *ngIf="error" class="error">
-    Username does not exist.
+    {{isRegistering ? 'The name is already in use.' : 'Username does not exist.'}}
   </mat-error>
 
 </form>
 
-<p routerLink="/auth/sign-up">Registration</p>
+<p (click)="toggleRegistering()">
+  {{isRegistering ? '' : 'Registration'}}
+</p>

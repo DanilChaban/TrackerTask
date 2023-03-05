@@ -1,4 +1,4 @@
-<h1>Add new</h1>
+<h1>{{isNew ? 'Add new' : 'Edit'}}</h1>
 
 <form [formGroup]="form">
 
@@ -10,7 +10,7 @@
         <button mat-button matDatepickerCancel>Cancel</button>
         <button mat-raised-button matDatepickerApply>Apply</button>
       </mat-datepicker-actions>
-      </mat-datepicker>
+    </mat-datepicker>
 
     <mat-error *ngIf="form.get('date')?.hasError('required')">
       This field is required.
@@ -20,13 +20,13 @@
   <mat-form-field>
     <input type="number" matInput min="1" max="24" formControlName="hours" placeholder="Time">
 
-  <mat-error *ngIf="form.get('hours')?.hasError('required')">
-    This field is required.
-  </mat-error>
+    <mat-error *ngIf="form.get('hours')?.hasError('required')">
+      This field is required.
+    </mat-error>
 
-  <mat-error *ngIf="form.get('hours')?.hasError('pattern')">
-    This field must contain numbers from 1 to 24
-  </mat-error>
+    <mat-error *ngIf="form.get('hours')?.hasError('pattern')">
+      This field must contain numbers from 1 to 24
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -38,10 +38,21 @@
   </mat-form-field>
 
 
-  <mat-checkbox formControlName="done">Is completed</mat-checkbox>
+  <div>
+    <mat-checkbox formControlName="done">Is completed</mat-checkbox>
 
-  <button class="add-btn" type="button" (click)="addNew()">Create</button>
+    <button *ngIf="!isNew" mat-fab (click)="toggleRemoveModal()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <button class="new-btn" type="button" (click)="addNew()">{{isNew ? 'Create' : 'Edit'}}</button>
 </form>
 
+<app-confirmation-modal
+  *ngIf="isShowConfirmDialog"
+  (close)="toggleRemoveModal()"
+  (remove)="removeTrack()"
+>
 
-
+</app-confirmation-modal>

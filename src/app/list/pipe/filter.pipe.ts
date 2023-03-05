@@ -6,14 +6,13 @@ import {Track} from "../../interfaces/track";
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(posts: Track[], search: string): Track[] {
+  transform(posts: [Track[]], search: string): Track[][] {
     if (!search.trim()) {
       return posts;
     }
 
-    return posts.filter(post => {
-      return post.message.toLowerCase().includes(search.toLowerCase());
+    return posts.map(post => {
+      return post.filter(track => track.message.toLowerCase().includes(search.toLowerCase()))
     })
   }
-
 }

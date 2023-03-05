@@ -1,7 +1,7 @@
 <div class="title-container">
   <h1>List</h1>
   <ng-container *ngIf="userName !== 'Admin'">
-    <button type="button" routerLink="/list/add-new">New +</button>
+    <button type="button" routerLink="/list/post-form/:id">New +</button>
   </ng-container>
 
 </div>
@@ -10,22 +10,22 @@
     <input type="search" matInput [(ngModel)]="search" placeholder="Search">
   </mat-form-field>
 
-<div *ngFor="let post of posts | filter:search">
+<div *ngFor="let tracks of posts | filter: search">
+  <div *ngFor="let track of tracks; let i = index">
+    <p *ngIf="userName === 'Admin' && i === 0" class="user-name">{{getUserName(track.userId)}}</p>
 
-  <p class="user-name">{{post.userName}}</p>
+    <div [routerLink]="['/list/post-form', track.id]"
+         [ngStyle]="{
+         background: track.done ? '#272F28' : '#201D1E'
+         }"
+         class="card">
 
-  <div [routerLink]="['/list/edit', post.id]"
-       [ngStyle]="{
-       background: post.done ? '#272F28' : '#201D1E'
-       }"
-       class="card">
-
-  <p class="text">{{post.message}}</p>
-  <div class="date-container">
-    <p class="time">{{post.hours}}</p>
-    <p class="date">{{post.date}}</p>
-  </div>
+    <p class="text">{{track.message}}</p>
+    <div class="date-container">
+      <p class="time">{{getFormattedHours(track.hours)}}</p>
+      <p class="date">{{track.date | date: 'd MMM y'}}</p>
+    </div>
+    </div>
   </div>
 </div>
-
 

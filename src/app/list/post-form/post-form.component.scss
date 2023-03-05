@@ -22,7 +22,6 @@ mat-form-field {
     color: #625F65 !important;
   }
 
-
   ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background: #312F36;
     border-radius: 36px;
@@ -35,6 +34,10 @@ mat-form-field {
   ::ng-deep .mdc-text-field .mdc-text-field__input {
     color: #C1C0C2;
   }
+}
+
+textarea {
+  resize: none;
 }
 
 mat-checkbox {
@@ -50,15 +53,24 @@ mat-checkbox {
   }
 }
 
-textarea {
-  resize: none;
+.material-icons {
+  color: #FF4B4B;
+  cursor: pointer;
 }
 
-.add-btn {
+::ng-deep .mat-mdc-fab.mat-accent {
+  position: relative;
+  top: 185px;
+  left: 170px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.new-btn {
   width: 335px;
   height: 62px;
   position: relative;
-  top: 250px;
+  top: 240px;
   background: #686082;
   border-radius: 134px;
   border: none;
@@ -69,9 +81,8 @@ textarea {
   color: #F6EAD4;
 }
 
-.add-btn:hover {
+.new-btn:hover {
   cursor: pointer;
   transition: 0.5s;
   background: #5d5675;
 }
-

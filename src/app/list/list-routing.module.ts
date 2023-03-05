@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ListComponent} from "./list.component";
-import {AddNewComponent} from "./add-new/add-new.component";
-import {EditComponent} from "./edit/edit.component";
 import {EditResolver} from "../resolvers/edit.resolver";
+import {PostFormComponent} from "./post-form/post-form.component";
+
 
 const routes: Routes = [
   {path: '', component: ListComponent},
-  {path: 'add-new', component: AddNewComponent},
-  {path: 'edit/:id', component: EditComponent, resolve: {track: EditResolver}}
+  {path: 'post-form/:id', component: PostFormComponent, resolve: {track: EditResolver}}
 ];
 
 @NgModule({
