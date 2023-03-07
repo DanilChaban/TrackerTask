@@ -34,7 +34,7 @@ export class PostFormComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.pipe(tap(({track}) => {
         this.form.get('date')?.setValue(track.date);
-        const hours = this.form.get('hours')?.setValue(track.hours);
+        this.form.get('hours')?.setValue(track.hours);
         this.form.get('message')?.setValue(track.message);
         this.form.get('done')?.setValue(track.done);
 
